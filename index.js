@@ -14,37 +14,9 @@ function DevToolsOpened() {
   
     // After 3 seconds, remove the show class from DIV
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+
+    return false;
 }
-
-// Detect DevTools (Chrome/Edge)
-var devtools = function() {};
-devtools.toString = function() {
-    DevToolsOpened();
-    return '-';
-}
-
-setInterval(()=>{
-    console.profile(devtools);
-    console.profileEnd(devtools);
-    if (console.clear) {
-        console.clear();
-    }
-}, 1000);
-
-// Detect DevTools (FireFox)
-if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
-    // Detect Resize (Chrome/Firefox/Edge Works) but (Triggers on Zoom In Chrome and Zoom Out FireFox)
-    window.onresize = function() {
-        if ((window.outerHeight - window.innerHeight) > 100 || (window.outerWidth - window.innerWidth) > 100) {
-            DevToolsOpened();
-        }
-    }
-}
-
-// Detect Fire Bug
-if (window.console && window.console.firebug || console.assert(1) === '_firebugIgnore') {
-    DevToolsOpened();
-};
 
 // Detect Key Shortcuts
 window.addEventListener('keydown', function(e) {
