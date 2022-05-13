@@ -5,7 +5,15 @@ document.addEventListener('contextmenu', function(event) {
 
 // DevTools Opened Script
 function DevToolsOpened() {
-    alert("Developer Tools Opened");
+    // Get the toast div
+    var x = document.getElementById("toast");
+    x.innerHTML ="You are not authorised to do this...";
+  
+    // Add the "show" class to DIV
+    x.className = "show";
+  
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
 // Detect DevTools (Chrome/Edge)
